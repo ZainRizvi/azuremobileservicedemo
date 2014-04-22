@@ -2,9 +2,9 @@
 //                        "YOUR MOBILE SERVICE URL HERE",
 //                        "YOUR APPLICATION KEY HERE");
 var client = new WindowsAzure.MobileServiceClient(
-    "https://azurebootcamp2014.azure-mobile.net/",
-    "ALMrOcOwmVrsmtGGCYjcaOchPoARTd79"
-    );
+    "https://azurebootcamp-z.azure-mobile.net/",
+    "xCgFGSoSEZtDoPgccDwSOyOwAmpITm39"
+);
 var map = null;
 var userLocation = null;
 var place = null;

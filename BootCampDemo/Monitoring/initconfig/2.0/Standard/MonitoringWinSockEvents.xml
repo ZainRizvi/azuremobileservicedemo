@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MonitoringManagement version="1.0" namespace="Ma" timestamp="2012-06-27T14:11:00.000Z" >
+    <Imports>
+        <!-- WANSP Plugin !-->
+        <Import file="WANSPListener.xml" />
+    </Imports>
+
+  <Events>
+    
+    <EtwProviders>
+
+      <EtwProvider guid="E53C6823-7BB8-44BB-90DC-3F86090D48A6" format="Manifest" storeType="Local">
+        <Event id="4" eventName="WinSockEvent1" diskQuotaInMB="50" disableE2E="true" />
+        <Event id="1021" eventName="WinSockEvent2" diskQuotaInMB="50" disableE2E="true" />
+      </EtwProvider>
+
+      <EtwProvider guid="B2F494FE-E78A-4FD7-8E12-E5D26A788631" format="Manifest" storeType="Local">
+        <Event id="1" eventName="DNSResolveEvent" diskQuotaInMB="50" disableE2E="true" />
+      </EtwProvider>
+  </EtwProviders>
+
+    <DerivedEvents>
+
+      <DerivedEvent sourceRegex="WinSockEvent."
+                eventName="WinSockEventPT15M"
+                storeType="Central"
+                duration="PT15M"
+                whereToRun="Local">
+        <Query>
+          <![CDATA[
+          groupby Identity(),Address
+          let ProviderGuid = ProviderGuid
+          let ProviderName = ProviderName
+          let Pid = Pid
+          let Tid = Tid
+          let OpcodeName = OpcodeName
+          let TaskName = TaskName
+          let ChannelName = ChannelName
+          let Process = Process
+          let Endpoint = Endpoint
+          let Count = Count()
+          let EventMessage = EventMessage
+          let EventId = EventId
+          ]]>
+        </Query>
+      </DerivedEvent>
+      <DerivedEvent source="WinSockEventPT15M"
+                          extension="WinSockExtension!Microsoft.Cis.Monitoring.Mds.DependencyServer.Extension.WinSockExtension"
+                          eventName="WinSockVipToLookup"
+                          storeType="Central"
+                          duration="PT15M">
+        <Query>
+          <![CDATA[
+          ]]>
+        </Query>
+      </DerivedEvent>
+      <DerivedEvent source="DNSResolveEvent"
+                eventName="DNSResolveEventPT15M"
+                storeType="Central"
+                duration="PT15M"
+                whereToRun="Local">
+        <Query>
+          <![CDATA[
+          groupby Identity(),SourceURL
+          let ProviderGuid = ProviderGuid
+          let ProviderName = ProviderName
+          let Pid = Pid
+          let Tid = Tid
+          let OpcodeName = OpcodeName
+          let TaskName = TaskName
+          let ChannelName = ChannelName
+          let EventMessage = EventMessage
+          let EventId = EventId
+          let DestURL = DestURL
+          let Count = Count()        
+          ]]>
+        </Query>
+      </DerivedEvent>
+      <DerivedEvent source="DNSResolveEventPT15M"
+                          extension="DnsResolveExtension!Microsoft.Cis.Monitoring.Mds.DependencyServer.Extension.DnsResolveExtension"
+                          eventName="WinSockVipToLookup"
+                          storeType="Central"
+                          duration="PT15M">
+        <Query>
+          <![CDATA[
+          ]]>
+        </Query>
+      </DerivedEvent>
+    </DerivedEvents>
+
+  </Events>
+
+</MonitoringManagement>

@@ -33,6 +33,234 @@
     <Compile Include="app.js" />
     <Compile Include="server.js" />
     <Content Include="css\app.css" />
+    <Content Include="Monitoring\AzureFteBootCampMdsConfig.xml">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\EwsListener.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\EwsListener.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\FaultInjection.h">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\faultinjectionlistener.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\faultinjectionlistener.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\FileListener.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\FileListener.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\initconfig\2.0\Standard\AgentStandardEvents.xml">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\initconfig\2.0\Standard\AgentStandardEventsMin.xml">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\initconfig\2.0\Standard\AntiMalwareEvents.xml">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\initconfig\2.0\Standard\MonitoringEwsEvents.xml">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\initconfig\2.0\Standard\MonitoringEwsEventsCore.xml">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\initconfig\2.0\Standard\MonitoringEwsRootEvents.xml">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\initconfig\2.0\Standard\MonitoringStandardEvents.xml">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\initconfig\2.0\Standard\MonitoringStandardEvents2.xml">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\initconfig\2.0\Standard\MonitoringWinSockEvents.xml">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\initconfig\2.0\Standard\SecurityStandardEvents.xml">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\initconfig\2.0\Standard\SecurityStandardEvents2.xml">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\initconfig\2.0\Standard\WANSPListener.xml">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\KernelTraceControl.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\KernelTraceControl.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonAgent.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonAgent.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonAgentHost.exe">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonAgentHost.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonAgentLauncher.exe">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonAgentLauncher.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonCompress.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonCompress.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonConfig.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonConfig.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonDiagnostics.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonDiagnostics.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonEvents.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonEvents.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonNetTransport.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonNetTransport.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonQuery.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonQuery.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonServiceTest.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonServiceTest.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonTables.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\MonTables.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\schema\1.0\command.xsd">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\schema\1.0\dataaccess.xsd">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\schema\1.0\DirectoryListing.xsd">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\schema\1.0\FileMatch.xsd">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\schema\1.0\ma.xsd">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\schema\1.0\maStatic.xsd">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\schema\1.0\mds.xsd">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\schema\1.0\NameValuePairListing.xsd">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\schema\1.0\Params.xsd">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\schema\1.0\ProcessListing.xsd">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\schema\1.0\query.xsd">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\schema\1.0\shared.xsd">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\schema\1.0\simplelist.xsd">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\schema\2.0\AimsRuleConfig.xsd">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\schema\2.0\AppConfig.xsd">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\schema\2.0\mds2.xsd">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\secutil.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\secutil.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\set_XSTORE_run_MonAgentLauncher.cmd">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\StorageClientLib.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\StorageClientLib.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\SysCounterListener.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\SysCounterListener.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\SystemEventsListener.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\SystemEventsListener.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\table2csv.exe">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\table2csv.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\VariableList.cmd">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\WANameSpaceProvider.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\WANameSpaceProvider.pdb">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\WANameSpaceProvider.Resources.dll">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Monitoring\wscore.man">
+      <Publish>True</Publish>
+    </Content>
     <Content Include="tutorial.html" />
     <Content Include="index.html" />
     <None Include="vmb.pubxml" />
@@ -48,6 +276,13 @@
   <ItemGroup>
     <Folder Include="bin\" />
     <Folder Include="css\" />
+    <Folder Include="Monitoring\" />
+    <Folder Include="Monitoring\initconfig\" />
+    <Folder Include="Monitoring\initconfig\2.0\" />
+    <Folder Include="Monitoring\initconfig\2.0\Standard\" />
+    <Folder Include="Monitoring\schema\" />
+    <Folder Include="Monitoring\schema\1.0\" />
+    <Folder Include="Monitoring\schema\2.0\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
   <ProjectExtensions>

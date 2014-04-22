@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MonitoringManagement version="1.0" namespace="Ma" timestamp="2011-09-27T20:08:38.0000000Z" >
+
+  <Events>
+
+    <EtwProviders>
+      <EtwProvider guid="MonitoringAgentSourceEvents" format="Xml" storeType="Local">
+        <Event id="64011" eventName="MaQosEvent" diskQuotaInMB="100" disableE2E="true" />
+        <Event id="64010" eventName="MaCounterEvent" diskQuotaInMB="100" disableE2E="true" />
+      </EtwProvider>
+    </EtwProviders>
+
+    <DerivedEvents>
+      <DerivedEvent duration="PT24H"
+                    eventName="MAEventTable"
+                    storeType="Local"
+                    retryTimeout="PT0M" >
+        <Query>
+          <![CDATA[
+        let Level = 5
+        let Pid = 0
+        let Tid = 0
+        let Stream = ""
+        let ActivityId = 0
+        let File=""
+        let Function = ""
+        let Line = 0
+        let MDRESULT = 0
+        let ErrorCode = 0
+        let ErrorCodeMsg = ""
+        let Message = ""
+        ]]>
+        </Query>
+      </DerivedEvent>
+    </DerivedEvents>
+  </Events>
+
+</MonitoringManagement>

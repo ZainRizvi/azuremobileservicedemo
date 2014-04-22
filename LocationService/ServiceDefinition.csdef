@@ -12,7 +12,36 @@
       <InputEndpoint name="Endpoint1" protocol="http" port="80" />
     </Endpoints>
     <Imports>
-      <Import moduleName="Diagnostics" />
     </Imports>
+    <Startup>
+      <Task commandLine="Monitoring\set_XSTORE_run_MonAgentLauncher.cmd" executionContext="elevated" taskType="background">
+        <Environment>
+          <Variable name="MONITORING_DATA_DIRECTORY">
+            <RoleInstanceValue xpath="/RoleEnvironment/CurrentInstance/LocalResources/LocalResource[@name='MonitoringDataStore']/@path" />
+          </Variable>
+          <Variable name="MONITORING_IDENTITY" value="use_ip_address" />
+          <Variable name="MONITORING_VERSION" value="1.0" />
+          <Variable name="MONITORING_INIT_CONFIG" value="Monitoring\AzureFteBootCampMdsConfig.xml" />
+          <Variable name="MONITORING_ROLE_INSTANCE">
+            <RoleInstanceValue xpath="/RoleEnvironment/CurrentInstance/@id" />
+          </Variable>
+          <Variable name="MONITORING_ROLE">
+            <RoleInstanceValue xpath="/RoleEnvironment/CurrentInstance/@roleName" />
+          </Variable>
+          <Variable name="MONITORING_TENANT">
+            <RoleInstanceValue xpath="/RoleEnvironment/Deployment/@id" />
+          </Variable>
+        </Environment>
+      </Task>
+    </Startup>
+    <LocalResources>
+      <LocalStorage name="MonitoringDataStore" cleanOnRoleRecycle="false" sizeInMB="20000" />
+    </LocalResources>
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="CN=DukeKAzureBootCampCert" storeLocation="LocalMachine" storeName="My" />
+    </Certificates>
   </WebRole>
 </ServiceDefinition>

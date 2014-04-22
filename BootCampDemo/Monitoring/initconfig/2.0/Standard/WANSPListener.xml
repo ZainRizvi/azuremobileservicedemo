@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MonitoringManagement version="1.0" timestamp="2011-05-12T20:08:38.0823856Z" >
+
+  <Events>
+      <Plugins>
+        <PlugIn module="WANameSpaceProvider.dll" >
+            <Event eventName="EwsNetworkConfiguration" storeType="Local" />
+            <Body>
+                <![CDATA[
+        <nop/>
+]]>
+            </Body>
+        </PlugIn>
+      </Plugins>
+
+  </Events>
+
+</MonitoringManagement>
+

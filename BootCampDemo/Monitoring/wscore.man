@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v3" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" copyright="Copyright (c) Microsoft Corporation. All Rights Reserved." manifestVersion="1.0">
+  <assemblyIdentity buildType="release" language="neutral" name="Microsoft-Azure-DNS Resolve Collector" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" version="24.0.4698.6" versionScope="nonSxS"/>
+  <instrumentation xmlns:ut="http://manifests.microsoft.com/win/2004/08/windows/networkevents" xmlns:win="http://manifests.microsoft.com/win/2004/08/windows/events" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <events xmlns="http://schemas.microsoft.com/win/2004/08/events">
+      <provider guid="{B2F494FE-E78A-4FD7-8E12-E5D26A788631}" message="$(string.EventProviderName)" messageFileName="%SystemRoot%\System32\WANameSpaceProvider.Resources.dll" name="Microsoft-Azure-DNS-Resolve-Collector" resourceFileName="%SystemRoot%\System32\WANameSpaceProvider.Resources.dll" symbol="WINDOWSAZURE_NAME_RESOLUTION">
+        <events>
+          <event channel="Winsock-WA-NameResolution" level="win:Informational" message="$(string.Event.Resolve)" opcode="win:Info" symbol="WA_NAME_RESOLVE_EVENT" task="URLResolve" template="t1" value="0x001" version="0"/>
+        </events>
+        <levels>
+          <level message="$(string.level.Inform)" name="info" symbol="info" value="16"/>
+        </levels>
+        <tasks>
+          <task eventGUID="{8BA09FD8-96AA-4959-8861-3D449C402E96}" name="URLResolve" symbol="WA_NSP_NAME_RESOLVED" value="1000"/>
+        </tasks>
+        <opcodes/>
+        <keywords>
+          <keyword mask="0x1" name="GenericMessage" symbol="GenericMessage"/>
+        </keywords>
+        <channels>
+          <channel chid="Winsock-WA-NameResolution" enabled="true" message="$(string.OperationalChannel.Name)" name="Microsoft-Azure-DNS-Resolve-Collector/Operational" symbol="CHAN_WINSOCK_NAME_RESOLUTION" type="Operational"/>
+        </channels>
+        <templates>
+          <template tid="t1">
+            <data inType="win:UnicodeString" name="SourceURL"/>
+            <data inType="win:UnicodeString" name="DestURL"/>
+          </template>
+        </templates>
+      </provider>
+    </events>
+  </instrumentation>
+  <localization>
+    <resources culture="en-US">
+      <stringTable>
+        <string id="opcode.Info" value="Info"/>
+        <string id="level.Inform" value="Information"/>
+        <string id="Event.Resolve" value="URL %1 was resolved as %2"/>
+        <string id="EventProviderName" value="Microsoft-Azure-Winsock NameResolution Event"/>
+        <string id="OperationalChannel.Name" value="Microsoft-Azure-Winsock NameResolution Event/Operational"/>
+      </stringTable>
+    </resources>
+  </localization>
+  <cbb:debuggingInfo xmlns:cbb="urn:schemas-microsoft-com:asm.internal.v1">
+    <cbb:sourceManifest sourcePath="%basedir%\services\monitoring\agent\listeners\wansp\man\wscore.man"/>
+  </cbb:debuggingInfo>
+</assembly>

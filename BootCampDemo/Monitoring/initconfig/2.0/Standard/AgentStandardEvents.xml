@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MonitoringManagement version="1.0" namespace="Ma" timestamp="2013-06-02T00:00:00.000Z" >
+
+  <Events>
+
+        <HeartBeats>
+                <HeartBeat eventName="MaHeartBeat" storeType="Central" duration="PT5M" retentionInDays="30" deadline="PT7M" retryTimeout="PT0M" diskQuotaInMB="32" />
+        </HeartBeats>
+
+    <EtwProviders>
+      <EtwProvider guid="MonitoringAgentSourceEvents" format="Xml" >
+        <Event id="64011" eventName="MaQosEvent" diskQuotaInMB="100" disableE2E="true" storeType="Local" />
+        <Event id="64010" eventName="MaCounterEvent" diskQuotaInMB="100" disableE2E="true" storeType="Local" />
+      </EtwProvider>
+    </EtwProviders>
+
+    <DerivedEvents>
+      <DerivedEvent duration="PT24H"
+                    eventName="MAEventTable"
+                    storeType="Local"
+                    retryTimeout="PT0M" >
+        <Query>
+          <![CDATA[
+        let Level = 5
+        let Pid = 0
+        let Tid = 0
+        let Stream = ""
+        let ActivityId = 0
+        let File=""
+        let Function = ""
+        let Line = 0
+        let MDRESULT = 0
+        let ErrorCode = 0
+        let ErrorCodeMsg = ""
+        let Message = ""
+        ]]>
+        </Query>
+      </DerivedEvent>
+
+      <DerivedEvent source="MAEventTable"
+                    duration="PT5M"
+                    eventName="MaEventFiveMinuteRoleInstanceTable"
+                    priority="Low"
+                    deadline="PT7M"
+                    retryTimeout="PT15M"
+                    storeType="Central"
+                    whereToRun="Local" >
+        <Query>
+          <![CDATA[
+        where Level < 3
+        groupby Identity(),File,Line
+        let MessageCount=Count()
+        let Level = Last(Level)
+        let Pid = Last(Pid)
+        let Tid = Last(Tid)
+        let Stream = Last(Stream)
+        let ActivityId = Last(ActivityId)
+        let Function = Last(Function)
+        let MDRESULT = Last(MDRESULT)
+        let ErrorCode = Last(ErrorCode)
+        let ErrorCodeMsg = Last(ErrorCodeMsg)
+        let Message = Last(Message)
+        ]]>
+        </Query>
+      </DerivedEvent>
+
+      <DerivedEvent source="MaQosEvent"
+        duration="PT5M"
+        eventName="MaQosFiveMinuteRoleInstanceTable"
+        priority="Low"
+        deadline="PT7M"
+        retentionInDays="30"
+        retryTimeout="PT15M"
+        storeType="CentralCompress"
+        whereToRun="Local">
+        <Query>
+          <![CDATA[
+                  groupby Identity(),Operation,Object
+                  let TotalCount = Count()
+                  let SuccessCount = Sum(Success > 0 ? 1 : 0)
+                  let Retries = Sum(Retries)
+                  let AverageDuration = Average(1.0 * DurationInMilliseconds)
+                  let AverageSize = Average(1.0 * DataSizeInBytes)
+                  let DataDelayInMilliseconds = Average(1.0 * DataDelayInMilliseconds)
+                  let MaxCompressQueueLoad = Max(MaximumCompressQueueLoad)
+                  let SumTotalBytesOfRawRow = Sum(TotalBytesOfRawRow)
+                  let SumTotalBytesOfCompressData = Sum(DataSizeInBytes)
+                  let SumTotalRawRowsSent = Sum(DataItemWriteCount)
+                  let SumTotalActualRowsSent = Sum(TotalActualRowsSent)
+                  let SumTotalCompressCount = Sum(TotalCompressCount)
+                  let SumTotalCompressTimeInMs = Sum(TotalCompressTimeInMs)
+                  let SumTotalSerializationTimeInMs = Sum(TotalSerializationTimeInMs)
+                  let AverageStorageOperationTimeInMs = Average(1.0 * StorageOperationTimeInMs)
+                  let SumBatchCount = Sum(RequestCount)
+                  let SumRequestSizeInBytes = Sum(RequestSizeInBytes)
+                  let SumResponseSizeInBytes = Sum(ResponseSizeInBytes)
+                  let SumRetriedRequestCount = Sum(RetriedRequestCount)
+        ]]>
+        </Query>
+      </DerivedEvent>
+
+      <DerivedEvent source="MaCounterEvent"
+            duration="PT5M"
+            eventName="MaCounterFiveMinuteRoleInstanceTable"
+            priority="Low"
+            deadline="PT7M"
+            retryTimeout="PT15M"
+            storeType="CentralCompress"
+            retentionInDays="30"
+            whereToRun="Local">
+        <Query>
+          <![CDATA[
+          groupby Identity(),CounterName
+          let SampleCount = Count()
+          let CounterValue = (CounterName.Contains("%") ? Average(Sample) : Max(Sample))
+        ]]>
+        </Query>
+      </DerivedEvent>
+
+
+    </DerivedEvents>
+
+  </Events>
+
+</MonitoringManagement>

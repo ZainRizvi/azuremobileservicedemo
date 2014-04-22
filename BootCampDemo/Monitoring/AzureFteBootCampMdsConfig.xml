@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MonitoringManagement version="1.0" namespace="ZainMds" timestamp="2014-04-15T00:00:00.000Z">
+  <Imports>
+    <Import file="MonitoringStandardEvents.xml" />
+  </Imports>
+
+  <Accounts>
+    <Account moniker="DukeKAzureFteBootCampStorageAccount" />
+  </Accounts>
+
+  <Management eventVolume="Medium" defaultRetentionInDays="90" >
+    <Identity type="TenantRole" />
+    <AgentResourceUsage diskQuotaInMB="20000"/>
+  </Management>
+
+  <Events>
+    <CounterSets>
+      <CounterSet eventName="CounterEvent" sampleRateInSeconds="10" storeType="Local">
+        <Counter>\Processor(_Total)\% Processor Time</Counter>
+        <Counter>\Network Interface(*)\Bytes Total/sec</Counter>
+        <Counter>\Memory\Write Copies/sec</Counter>
+      </CounterSet>
+    </CounterSets>
+
+    <EtwProviders>
+      <EtwProvider name="SampleEventSourceWriter" format="EventSource" storeType="Central" duration="PT1M">
+        <DefaultEvent eventName="DefaultEventTable" />
+        <Event id="1" eventName="LoadEvent" storeType="Central" logToDefault="true"/>
+        <Event id="2" eventName="SendEnumsEvent" storeType="Central"/>
+        <Event id="3" eventName="MessageMethodEvent" storeType="Central" logToDefault="true" />
+        <Event id="4" eventName="SetOtherEvent" storeType="Central"/>
+        <Event id="5" eventName="HighFreEvent" storeType="Local"/>
+      </EtwProvider>
+    </EtwProviders>
+
+    <!-- The data for the event goes to table
+         [namespace] CounterFiveMinuteNodeRollupVer[version]V0 -->
+    <DerivedEvents>
+      <DerivedEvent source="CounterEvent"
+                    eventName="CounterFiveMinuteNodeRollup"
+                    duration="PT5M">
+        <Query>
+          groupby Tenant, Role, RoleInstance, CounterName
+          let CounterValue=Average(CounterValue)
+        </Query>
+      </DerivedEvent>
+
+      <!-- The data for the event goes to table
+           [namespace]CounterFiveMinuteTenantRollupVer[version]V0 -->
+      <DerivedEvent source="CounterFiveMinuteNodeRollup"
+                    eventName="CounterFiveMinuteTenantRollup"
+                    duration="PT5M">
+        <Query>
+          groupby Tenant, CounterName
+          let CounterValue=Average(CounterValue)
+        </Query>
+      </DerivedEvent>
+
+      <DerivedEvent source="DefaultEventTable"
+                    eventName="AlarmEvent"
+                    priority="High"
+                    duration="PT1M">
+        <Query>
+          <![CDATA[where Level < 3]]>
+        </Query>
+      </DerivedEvent>
+    </DerivedEvents>
+  </Events>
+</MonitoringManagement>
